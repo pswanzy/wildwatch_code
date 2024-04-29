@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title> Rates for Rescue Vehicle Costs Calculator</title>
+</head>
+<body>
+
+<h3>Rates for Rescue Vehicle Costs Calculator</h3>
+<div><h4>Disaster Rescue Vehicle Costs Estimate:</h4></div>
+<form id="vehicleCalcForm">
+  <div>  
+  <label for="vehicleCraft">Select Vehicle:</label>
+    <select id="vehicleCraft">
+        <option value="" disabled selected>Select Vehicle</option>
+        <optgroup label="Aircraft">
+        <option value="HC-144">HC-144</option>
+        <option value="HC-27J">HC-27J</option>
+        <option value="C-37">C-37</option>
+        <option value="HC-130H">HC-130H</option>
+        <option value="HC-130J">HC-130J</option>
+        <option value="MH-60T Jayhawk">MH-60T Jayhawk</option>
+        <option value="MH-65D Dolphin">MH-65D Dolphin</option>
+          </optgroup>
+            <optgroup label="Boats">
+            <option value="49' Stern Loading Bouy Boat">49' Stern Loading Bouy Boat</option>
+            <option value="AtoN 55’ (ANB)">AtoN 55’ (ANB)</option> 
+            <option value="AtoN 63' 64’ (ANB)">AtoN 63' 64’ (ANB)</option>
+            <option value="ATON Boat - Small (AB-S)">ATON Boat - Small (AB-S)</option>
+            <option value="Motor Lifeboat (47')">Motor Lifeboat (47')</option>
+            <option value="Response Boat - Medium">Response Boat - Medium</option>
+            <option value="Response Boat - Small (25')">Response Boat - Small (25')</option>
+            <option value="Response Boat - Small (29')">Response Boat - Small (29')</option>
+            <option value="AtoN Boat – Skiff (AB-SKF) & Shore-Based Skiff (SKF)">AtoN Boat – Skiff (AB-SKF) & Shore-Based Skiff (SKF)</option>
+            <option value="Short-Haul Ice Rescue Skiff (SKF-ICE)">Short-Haul Ice Rescue Skiff (SKF-ICE)</option>
+            <option value="Special Purpose Craft (20’ Airboat, SPC-AIRBOAT)">Special Purpose Craft (20’ Airboat, SPC-AIRBOAT)</option>
+            <option value="Special Purpose Craft (22’ Airboat, SPC-AIR)">Special Purpose Craft (22’ Airboat, SPC-AIR)</option>
+            <option value="Special Purpose Craft - Heavy Weather">Special Purpose Craft - Heavy Weather</option>
+            <option value="Special Purpose Craft - Law Enforcement">Special Purpose Craft - Law Enforcement</option>
+            <option value="Special Purpose Craft - Near Shore Lifeboat">Special Purpose Craft - Near Shore Lifeboat</option>
+            <option value="Special Purpose Craft - Shallow Water">Special Purpose Craft - Shallow Water</option>
+            <option value="Special Purpose Craft - Training Boat">Special Purpose Craft - Training Boat</option>
+            <option value="Trailereable ATON Boat (21') (26')">Trailereable ATON Boat (21') (26')</option>
+            <option value="Transportable Port Security Boat (25') (32')">Transportable Port Security Boat (25') (32')</option>
+            <option value="Utility Boat - Medium (25' - 40' 11 in)">Utility Boat - Medium (25' - 40' 11 in)</option>
+            </optgroup>
+              <optgroup label="Cutters">
+              <option value="WAGB-420 HEALY Icebreaker">WAGB-420 HEALY Icebreaker</option>
+              <option value="WMSL-418 National Security Cutter">WMSL-418 National Security Cutter</option>
+              <option value="WAGB-399 Heavy Icebreaker">WAGB-399 Heavy Icebreaker</option>
+              <option value="WHEC-378 High Endurance Cutter">WHEC-378 High Endurance Cutter</option>
+              <option value="WIX-295 Training Barque">WIX-295 Training Barque</option>
+              <option value="WMEC-282 Medium Endurance Cutter">WMEC-282 Medium Endurance Cutter</option>
+              <option value="WMEC-270 Medium Endurance Cutter">WMEC-270 Medium Endurance Cutter</option>
+              <option value="WLBB-240 Great Lakes Icebreaker">WLBB-240 Great Lakes Icebreaker</option>
+              <option value="WLB-225 Sea Going Buoy Tender">WLB-225 Sea Going Buoy Tender</option>
+              <option value="WMEC-210 Medium Endurance Cutter">WMEC-210 Medium Endurance Cutter</option>
+              <option value="WLM-175 Coastal Buoy Tender">WLM-175 Coastal Buoy Tender</option>
+              <option value="WLIC-160 Inland Construction Tender">WLIC-160 Inland Construction Tender</option>
+              <option value="WPC-154 Fast Response Cutter">WPC-154 Fast Response Cutter</option>
+              <option value="WTGB-140 Icebreaking Tug">WTGB-140 Icebreaking Tug</option>
+              <option value="WPB-110 Patrol Boat">WPB-110 Patrol Boat</option>
+              <option value="WLI-100 Inland Buoy Tender">WLI-100 Inland Buoy Tender</option>
+              <option value="WLIC-100 Inland Construction Tender">WLIC-100 Inland Construction Tender</option>
+              <option value="WPB-87 Patrol Boat">WPB-87 Patrol Boat</option>
+              <option value="WLIC-75 Inland Construction Tender">WLIC-75 Inland Construction Tender</option>
+              <option value="WLR-75 River Buoy Tender">WLR-75 River Buoy Tender</option>
+              <option value="WLI-65 Inland Buoy Tender">WLI-65 Inland Buoy Tender</option>
+              <option value="WLR-65 River Buoy Tender">WLR-65 River Buoy Tender</option>
+                <option value="WYTL-65 Small Harbor Tug">WYTL-65 Small Harbor Tug</option>
+              </optgroup>
+    </select>
+  </div>
+  <div>
+    <label for="vehicleGovtType">Select Gov't Type:</label>
+    <select id="vehicleGovtType">
+        <option value="" disabled selected>Select Type</option>
+        <option value="in">In Gov't</option>
+        <option value="out">Out Gov't</option>
+    </select>
+  </div>
+  <div>
+    <label for="vehicleHoursUsed">Hours Used:</label>
+    <input type="number" id="vehicleHoursUsed" min="0">
+  </div>
+  <div>
+    <label for="vehicleNumber">Number of Vehicles:</label>
+    <input type="number" id="vehicleNumber" min="0">
+  </div>
+  <div>
+    <button type="button" onclick="calculateVehicleCost()">Calculate Cost</button>
+  </div>
+  <div><button type="button" onclick="resetVehicleCalc()">Reset Fields</button></div>
+  <p id="vehicleResult"></p>
+</form>
+</body>
+  
+  <footer>
+<script>
+function calculateVehicleCost() {
+    const craft = document.getElementById('vehicleCraft').value;
+    const govtType = document.getElementById('vehicleGovtType').value;
+    const hoursUsed = parseFloat(document.getElementById('vehicleHoursUsed').value);
+    const vehicle = parseInt(document.getElementById('vehicleNumber').value);
+    let hourlyRate;
+
+        switch (craft) {
+            case 'HC-144':
+                hourlyRate = (govtType === 'in') ? 12213 : 15676;
+                break;
+            case 'HC-27J':
+                hourlyRate = (govtType === 'in') ? 14615 : 18364;
+                break;
+            case 'C-37':
+              hourlyRate = (govtType === 'in') ? 19709 : 40581;
+            break;
+            case 'HC-130H':
+              hourlyRate = (govtType === 'in') ? 16044 : 20311 ;
+            break;
+            case 'HC-130J':
+              hourlyRate = (govtType === 'in') ? 19782 : 26169 ;
+            break;
+            case 'MH-60T Jayhawk':
+              hourlyRate = (govtType === 'in') ? 15895 : 20496;
+            break;
+            case 'MH-65D Dolphin':
+              hourlyRate = (govtType === 'in') ? 11850 : 15014;
+            break;
+            case "49' Stern Loading Bouy Boat":
+              hourlyRate = (govtType === 'in') ? 3154 : 4106;
+            break;
+            case "AtoN 55’ (ANB)":
+              hourlyRate = (govtType === 'in') ? 10508  : 14667;
+            break;
+            case "AtoN 63' 64’ (ANB)":
+              hourlyRate = (govtType === 'in') ? 5927 : 7556 ;
+            break;
+            case "ATON Boat - Small (AB-S)":
+              hourlyRate = (govtType === 'in') ? 4732 : 6406;
+            break;
+            case "Motor Lifeboat (47')":
+              hourlyRate = (govtType === 'in') ? 2544  : 3364;
+            break;
+            case 'Response Boat - Medium':
+              hourlyRate = (govtType === 'in') ? 2505  : 3329;
+            break;
+            case "Response Boat - Small (25')":
+              hourlyRate = (govtType === 'in') ? 1165 : 1544;
+            break;
+            case "Response Boat - Small (29')":
+              hourlyRate = (govtType === 'in') ? 1122 : 1467;
+            break;
+            case 'AtoN Boat – Skiff (AB-SKF) & Shore-Based Skiff (SKF)':
+              hourlyRate = (govtType === 'in') ? 9309 : 12197;
+            break;
+            case 'Short-Haul Ice Rescue Skiff (SKF-ICE)':
+              hourlyRate = (govtType === 'in') ? 8176 : 10649;
+            break;
+            case 'Special Purpose Craft (20’ Airboat, SPC-AIRBOAT)':
+              hourlyRate = (govtType === 'in') ? 11356 : 14641 ;
+            break;
+            case 'Special Purpose Craft (22’ Airboat, SPC-AIR)':
+              hourlyRate = (govtType === 'in') ? 12635 : 16159;
+            break;
+            case 'Special Purpose Craft - Heavy Weather':
+              hourlyRate = (govtType === 'in') ? 6051 : 7873;
+            break;
+            case 'Special Purpose Craft - Law Enforcement':
+              hourlyRate = (govtType === 'in') ? 864 : 1166;
+            break;
+            case 'Special Purpose Craft - Near Shore Lifeboat':
+              hourlyRate = (govtType === 'in') ? 3761 : 4774;
+            break;
+            case 'Special Purpose Craft - Shallow Water':
+              hourlyRate = (govtType === 'in') ? 1884 : 2468;
+            break;
+            case 'Special Purpose Craft - Training Boat':
+              hourlyRate = (govtType === 'in') ? 2893 : 3795;
+                break;
+            case "Trailereable ATON Boat (21') (26')":
+            hourlyRate = (govtType === 'in') ? 2137 : 2817 
+;
+              break;
+            case "Transportable Port Security Boat (25') (32')":
+            hourlyRate = (govtType === 'in') ? 4148 : 5391;
+              break;
+            case "Utility Boat - Medium (25' - 40' 11 in)":
+            hourlyRate = (govtType === 'in') ? 11484 : 15745 ;
+              break;
+            case 'WAGB-420 HEALY Icebreaker':
+            hourlyRate = (govtType === 'in') ? 18533 : 27098;
+              break;
+            case 'WMSL-418 National Security Cutter':
+            hourlyRate = (govtType === 'in') ? 16565 : 31919;
+              break;
+            case 'WAGB-399 Heavy Icebreaker':
+            hourlyRate = (govtType === 'in') ? 17846 : 26962;
+              break;
+            case 'WHEC-378 High Endurance Cutter':
+            hourlyRate = (govtType === 'in') ? 11757 : 15094;
+              break;
+            case 'WIX-295 Training Barque':
+            hourlyRate = (govtType === 'in') ? 9666 : 12311;
+              break;
+            case 'WMEC-282 Medium Endurance Cutter':
+            hourlyRate = (govtType === 'in') ? 8541 : 12225;
+              break;
+            case 'WMEC-270 Medium Endurance Cutter':
+            hourlyRate = (govtType === 'in') ? 8730 : 11901 ;
+              break;
+            case 'WLBB-240 Great Lakes Icebreaker':
+            hourlyRate = (govtType === 'in') ? 14475 : 20583;
+              break;
+            case 'WLB-225 Sea Going Buoy Tender':
+            hourlyRate = (govtType === 'in') ? 8584 : 11852;
+              break;
+            case 'WMEC-210 Medium Endurance Cutter':
+            hourlyRate = (govtType === 'in') ? 6436 : 8279;
+              break;
+            case 'WLM-175 Coastal Buoy Tender':
+            hourlyRate = (govtType === 'in') ? 5593 : 7935;
+              break;
+            case 'WLIC-160 Inland Construction Tender':
+            hourlyRate = (govtType === 'in') ? 4531 : 5619;
+              break;
+            case 'WPC-154 Fast Response Cutter':
+            hourlyRate = (govtType === 'in') ? 4803 : 7560 ;
+      
+              break;
+            case 'WTGB-140 Icebreaking Tug':
+            hourlyRate = (govtType === 'in') ? 4536 : 6061 ;
+              break;
+            case 'WPB-110 Patrol Boat':
+            hourlyRate = (govtType === 'in') ? 5389 : 7430;
+              break;
+            case 'WLI-100 Inland Buoy Tender':
+            hourlyRate = (govtType === 'in') ? 8553  : 11330 ;
+              break;
+            case 'WLIC-100 Inland Construction Tender':
+            hourlyRate = (govtType === 'in') ? 6717 : 9514 ;
+              break;
+            case 'WPB-87 Patrol Boat':
+            hourlyRate = (govtType === 'in') ? 2722 : 3543 ;
+              break;
+            case 'WLIC-75 Inland Construction Tender':
+            hourlyRate = (govtType === 'in') ? 3545 : 4301;
+              break;
+            case 'WLR-75 River Buoy Tender':
+            hourlyRate = (govtType === 'in') ? 3293 : 4255;
+              break;
+            case 'WLI-65 Inland Buoy Tender':
+            hourlyRate = (govtType === 'in') ? 7575 : 10658;
+              break;
+            case 'WLR-65 River Buoy Tender':
+            hourlyRate = (govtType === 'in') ? 4843 : 6149;
+              break;
+            case 'WYTL-65 Small Harbor Tug':
+            hourlyRate = (govtType === 'in') ? 5291 : 6501 ;
+              break;
+            default:
+                hourlyRate = 0;
+        }
+
+        if (hourlyRate && hoursUsed && vehicle) {
+        const totalCost = hourlyRate * hoursUsed * vehicle;
+        document.getElementById('vehicleResult').textContent = `Total Estimated Vehicle usage cost: $${totalCost}`;
+    } else {
+        document.getElementById('vehicleResult').textContent = 'Please fill in all fields.';
+    }
+}
+  function resetVehicleCalc() {
+    document.getElementById('vehicleCalcForm').reset();
+}
+</script>
+
+</footer>
+</html>

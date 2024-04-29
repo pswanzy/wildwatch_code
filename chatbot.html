@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--Original code adapted from Luke Yadao
+Updated styles, placement, and integration to main site
+Peter Swanzy, Luke Yadao, 2024-->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat Pop-up</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+      .chat-popup {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    border: 1px solid #ccc;
+    border-radius: 15px;
+    width: 350px; /* Increased from 350px to 400px */
+    max-height: 450px; /* Increased from 400px to 500px */
+    overflow-y: auto;
+    background-color: #fff;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    z-index: 2147483647; /* Use the maximum possible value for z-index */
+    padding: 20px; /* Added padding around the content inside the popup */
+}
+
+
+        .chat-popup-content {
+            padding: 20px;
+        }
+
+        .user-input-container {
+            display: none;
+            justify-content: flex-end; /* Align user input to the right */
+            padding: 10px;
+        }
+
+        #user-input-popup {
+            width: calc(100% - 90px);
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 20px;
+            margin-left: 10px; /* Adjust margin */
+            outline: none;
+        }
+
+        .popup-button {
+            font-size: 24px;
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            padding: 10px 20px;
+            border: none;
+            background-color: #4CAF50;
+            color: white;
+            border-radius: 20px;
+            cursor: pointer;
+            outline: none;
+            z-index: 999;
+        }
+
+        .popup-button:hover {
+            background-color: #45a049;
+        }
+
+        .popup-button:active {
+            background-color: #3e8e41;
+        }
+
+        .send-button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            outline: none;
+        }
+
+        .send-button:hover {
+            background-color: #45a049;
+        }
+
+        .send-button:active {
+            background-color: #3e8e41;
+        }
+
+        .message-container {
+            display: flex;
+            justify-content: flex-start; /* Align bot messages to the left */
+            margin-bottom: 10px;
+        }
+
+        .user-message {
+            background-color: #4CAF50;
+            color: white;
+            border-radius: 15px 15px 0 15px;
+            padding: 10px;
+            max-width: 70%;
+            word-wrap: break-word;
+        }
+
+        .bot-message {
+            background-color: #f1f1f1;
+            border-radius: 15px 15px 15px 0;
+            padding: 10px;
+            max-width: 70%;
+            word-wrap: break-word;
+        }
+    </style>
+</head>
+
+<body>
+    <button class="popup-button" onclick="toggleChat()">Open Chat 💬</button>
+
+    <div id="chat-popup" class="chat-popup">
+        <div class="exit-button-container">
+            <button class="exit-button" onclick="toggleChat()"> X </button>
+        </div>
+        <div class="chat-popup-content" id="chat-container-popup"></div>
+        <div class="user-input-container">
+            <input type="text" id="user-input-popup" placeholder="Type your message...">
+            <button class="send-button" onclick="sendMessagePopup()">Send</button>
+        </div>
+    </div>
+
+    <script>
+        const responses = {
+            greeting: "Hello! How can I assist you with search and rescue operations today? We can talk about Drones, Wearable Technology, and Temperature Sensors. What would you like to know more about?",
+            goodbye: "Goodbye! Stay safe out there!",
+            help: "Sure, I'm here to help with anything related to search and rescue. What do you need assistance with?",
+            drones: "Drones are a valuable tool in search and rescue operations, providing aerial surveillance and locating missing persons.",
+            wearableTech: "Wearable technology like GPS trackers and heart rate monitors can help keep track of search and rescue team members and monitor their health.",
+            temperatureSensors: "Temperature sensors are used to detect body heat and environmental conditions, aiding in locating missing individuals.",
+            default: "I'm sorry, I didn't understand that. Can you please try again?",
+        };
+
+        const explanations = {
+            drones: "Drones are unmanned aerial vehicles (UAVs) that can be used for aerial surveillance and locating missing persons.",
+            wearableTech: "Wearable technology includes devices like GPS trackers and heart rate monitors that are worn by search and rescue team members to monitor their health and track their location.",
+            temperatureSensors: "Temperature sensors are used to detect changes in temperature, helping search and rescue teams locate missing individuals based on body heat or environmental conditions.",
+        };
+
+        function toggleChat() {
+            const chatPopup = document.getElementById("chat-popup");
+            chatPopup.style.display = chatPopup.style.display === "block" ? "none" : "block";
+            const userContainer = document.querySelector(".user-input-container");
+            userContainer.style.display = userContainer.style.display === "flex" ? "none" : "flex";
+
+            if (chatPopup.style.display === "block") {
+                setTimeout(() => appendBotResponse("Automated Customer Service", responses.greeting), 500);
+            }
+        }
+
+        function appendUserMessage(message) {
+            const chatContainer = document.getElementById("chat-container-popup");
+            const messageContainer = document.createElement("div");
+            messageContainer.classList.add("message-container");
+            const userMessage = `<div class="user-message">${message}</div>`;
+            messageContainer.innerHTML = userMessage;
+            chatContainer.appendChild(messageContainer);
+            scrollToBottom();
+        }
+
+        function appendBotResponse(sender, message) {
+            const chatContainer = document.getElementById("chat-container-popup");
+            const messageContainer = document.createElement("div");
+            messageContainer.classList.add("message-container");
+            const botMessage = `<div class="bot-message">${message}</div>`;
+            messageContainer.innerHTML = botMessage;
+            chatContainer.appendChild(messageContainer);
+            scrollToBottom();
+        }
+
+        function scrollToBottom() {
+            const chatPopup = document.getElementById("chat-popup");
+            chatPopup.scrollTop = chatPopup.scrollHeight;
+        }
+
+        function sendMessagePopup() {
+            const userInput = document.getElementById("user-input-popup").value;
+            if (userInput.trim() !== "") {
+                appendUserMessage(userInput);
+                setTimeout(() => {
+                    const botResponse = handleQuery(userInput);
+                    appendBotResponse("Automated Customer Service", botResponse);
+                }, 1000);
+                document.getElementById("user-input-popup").value = "";
+            }
+        }
+
+        function handleQuery(query) {
+            query = query.toLowerCase();
+            if (query.includes("hello") || query.includes("hi") || query.includes("hey"))
+                return responses.greeting;
+            else if (query.includes("goodbye") || query.includes("bye") || query.includes("see you later"))
+                return responses.goodbye;
+            else if (query.includes("help") || query.includes("assist") || query.includes("support"))
+                return responses.help;
+            else if (query.includes("drone") || query.includes("uav") || query.includes("unmanned aerial vehicle"))
+                return handleDroneQuery(query);
+            else if (query.includes("wearable") || query.includes("wearable tech") || query.includes("smartwatch") || query.includes("fitness tracker"))
+                return handleWearableTechQuery(query);
+            else if (query.includes("temperature") || query.includes("temp") || query.includes("sensor") || query.includes("thermal"))
+                return handleTemperatureQuery(query);
+            else
+                return "Please send a request to customer service for further assistance.";
+        }
+
+        function handleDroneQuery(query) {
+            if (query.includes("explain") || query.includes("more info") || query.includes("details"))
+                return explanations.drones;
+            else
+                return responses.drones;
+        }
+
+        function handleWearableTechQuery(query) {
+            if (query.includes("explain") || query.includes("more info") || query.includes("details"))
+                return explanations.wearableTech;
+            else
+                return responses.wearableTech;
+        }
+
+        function handleTemperatureQuery(query) {
+            if (query.includes("explain") || query.includes("more info") || query.includes("details"))
+                return explanations.temperatureSensors;
+            else
+                return responses.temperatureSensors;
+        }
+    </script>
+</body>
+
+</html>

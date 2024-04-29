@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Disaster Preparation Calculator</title>
+</head>
+<body>
+  <div> <h3>Disaster Preparation Cost Calculator</h3></div>
+  <div>
+    <form onsubmit="calculateCost1(event)">
+        <div>
+            <label for="question1">Question 1: How many people live in your household? (Include yourself)</label> <br>
+            <input type="number" name="question1" min="1" id="question1"  required>
+        </div>
+        <div>
+            <label for="question2">Question 2: Do you have enough food and water to last 14 days?</label> <br>
+            <select name="question2" id="question2" required>
+              <option value="" disabled selected>Select one</option>
+                <option value="yes">Yes</option>
+                <option value="no">No</option>
+            </select>
+        </div>
+        <div>
+            <label for="question3">Question 3: Do you have a battery-operated radio?</label> <br>
+            <select name="question3" id="question3" required>
+                <option value="" disabled selected>Select one</option>
+                <option value="yes">Yes</option>
+                <option value="no">No</option>
+            </select>
+        </div>
+        <div>
+            <label for="question4">Question 4: Do you have a First Aid Kit?</label><br>
+            <select name="question4" id="question4"required>
+              <option value="" disabled selected>Select one</option>
+              <option value="yes">Yes</option>
+                <option value="no">No</option>
+            </select>
+        </div>
+        <div>
+            <label for="question5">Question 5: Do you have a Flashlight?</label><br>
+            <select name="question5" id="question5" required>
+                <option value="" disabled selected>Select one</option>
+                <option value="yes">Yes</option>
+                <option value="no">No</option>
+            </select>
+        </div>
+        <div>
+            <label for="question6">Question 6: Do you have Extra batteries?</label><br>
+            <select name="question6" id="question6" required>
+                <option value="" disabled selected>Select one</option>
+                <option value="yes">Yes</option>
+                <option value="no">No</option>
+            </select>
+        </div>
+        <div>
+            <label for="question7">Question 7: Do you have Cellphone chargers and power banks?</label><br>
+            <select name="question7" id="question7" required>
+                <option value="" disabled selected>Select one</option>
+                <option value="yes">Yes</option>
+                <option value="no">No</option>
+            </select>
+        </div>
+        <div>
+            <label for="question8">Question 8: Do you have a wrench or pliers?</label> <br>
+            <select name="question8" id="question8"required>
+                <option value="" disabled selected>Select one</option>
+                <option value="yes">Yes</option>
+                <option value="no">No</option>
+            </select>
+        </div>
+        <div>
+            <label for="question9">Question 9: Do you have wet wipes, garbage bags, and plastic ties for personal sanitation?</label> <br>
+            <select name="question9" id="question9"required>
+                <option value="" disabled selected>Select one</option>
+                <option value="yes">Yes</option>
+                <option value="no">No</option>
+            </select>
+        </div>
+        <div>
+            <label for="question10">Question 10: Do you have enough fuel to leave the disaster zone?</label><br>
+            <select name="question10" id="question10"required>
+                <option value="" disabled selected>Select one</option>
+                <option value="yes">Yes</option>
+                <option value="no">No</option>
+            </select>
+        </div><br>
+        <div><button type="submit">Submit</button></div>
+      <div><button type="reset">Reset Fields</button></div>
+    </form>
+  </div>
+  <div id="result-calc1"></div>
+</body>
+  
+<footer>
+<script>
+function calculateCost1(event) {
+    event.preventDefault(); // This prevents the default form submission.
+
+    const form = event.target; // This is a more robust way to reference the form elements.
+    const inputValue = document.getElementById('question1').value.trim();
+    const multiplier = inputValue === '' || isNaN(inputValue) ? 0 : parseInt(inputValue);
+    let runningTotal = 0;
+
+    const answers = {
+        question1: multiplier,
+        question2: document.getElementById('question2').value,
+        question3: document.getElementById('question3').value,
+        question4: document.getElementById('question4').value,
+        question5: document.getElementById('question5').value,
+        question6: document.getElementById('question6').value,
+        question7: document.getElementById('question7').value,
+        question8: document.getElementById('question8').value,
+        question9: document.getElementById('question9').value,
+        question10: document.getElementById('question10').value
+    };
+
+    if (answers.question2 === "no") { runningTotal += 500 * answers.question1; }
+    if (answers.question3 === "no") { runningTotal += 70; }
+    if (answers.question4 === "no") { runningTotal += 15 * answers.question1; }
+    if (answers.question5 === "no") { runningTotal += 60; }
+    if (answers.question6 === "no") { runningTotal += 40; }
+    if (answers.question7 === "no") { runningTotal += 50; }
+    if (answers.question8 === "no") { runningTotal += 25; }
+    if (answers.question9 === "no") { runningTotal += 60; }
+    if (answers.question10 === "no") { runningTotal += 35; }
+
+    document.getElementById('result-calc1').textContent = `The estimated cost for disaster preparation: $${runningTotal}`;
+}
+</script>
+
+</footer>
+</html>

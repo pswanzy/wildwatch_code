@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Personnel Rates By Grade Calculator</title>
+</head>
+<body>
+
+<h3>Personnel Rates By Grade Calculator</h3>
+<h4>Answer the following questions for estimation of Personnel costs by Grade:</h4>
+<form id="gradeCalcForm">
+  <div>  
+  <label for="gradeSelect">Select Grade:</label>
+    <select id="gradeSelect">
+        <option value="" disabled selected>Select Grade</option>
+        <option value="ES-00">ES-00</option>
+        <option value="AL-00">AL-00</option>
+        <option value="AD-00">AD-00</option>
+        <option value="GS-15">GS-15</option>
+        <option value="GS-14">GS-14</option>
+        <option value="GS-13">GS-13</option>
+        <option value="GS-12">GS-12</option>
+        <option value="GS-11">GS-11</option>
+        <option value="GS-10">GS-10</option> 
+        <option value="GS-09">GS-09</option>
+        <option value="GS-08">GS-08</option>
+        <option value="GS-07">GS-07</option>
+        <option value="GS-06">GS-06</option>
+        <option value="GS-05">GS-05</option>
+        <option value="GS-04">GS-04</option>
+        <option value="GS-03">GS-03</option>
+        <option value="WG-15">WG-15</option>
+        <option value="WG-14">WG-14</option>
+        <option value="WG-13">WG-13</option>
+        <option value="WG-12">WG-12</option>
+        <option value="WG-11">WG-11</option>
+        <option value="WG-10">WG-10</option>
+        <option value="WG-09">WG-09</option>
+        <option value="WG-08">WG-08</option>
+        <option value="WG-07">WG-07</option>
+        <option value="WG-06">WG-06</option>
+        <option value="WG-05">WG-05</option>
+        <option value="WG-04">WG-04</option>
+        <option value="WG-03">WG-03</option>
+        <option value="WG-02">WG-02</option>
+    </select>
+  </div>
+  <div>
+    <label for="gradeGovtType">Select Gov't Type:</label>
+    <select id="gradeGovtType">
+        <option value="" disabled selected>Select Type</option>
+        <option value="in">In Gov't</option>
+        <option value="out">Out Gov't</option>
+    </select>
+  </div>
+  <div>
+    <label for="gradeHoursWorked">Hours Worked:</label>
+    <input type="number" id="gradeHoursWorked" min="0">
+  </div>
+  <div>
+    <label for="gradePersonnel">Number of Personnel:</label>
+    <input type="number" id="gradePersonnel" min="0">
+  </div>
+  <div>
+    <button type="button" onclick="calculateGradeCost()">Calculate Cost</button>
+  </div>
+  <div><button type="button" onclick="resetGradeCalculator()">Reset Fields</button></div>
+  <p id="gradeResult"></p>
+</form>
+  </body>
+  <footer>
+<script>
+function calculateGradeCost() {
+    const grade = document.getElementById('gradeSelect').value;
+    const govtType = document.getElementById('gradeGovtType').value;
+    const hoursWorked = parseFloat(document.getElementById('gradeHoursWorked').value);
+    const personnel = parseInt(document.getElementById('gradePersonnel').value);
+    let hourlyRate;
+        switch (grade) {
+            case 'ES-00':
+                hourlyRate = (govtType === 'in') ? 155 : 167;
+                break;
+            case 'AL-00':
+                hourlyRate = (govtType === 'in') ? 140 : 151;
+                break;
+            case 'AD-00':
+              hourlyRate = (govtType === 'in') ? 109 : 118;
+            break;
+            case 'GS-15':
+              hourlyRate = (govtType === 'in') ? 128 : 137;
+            break;
+            case 'GS-14':
+              hourlyRate = (govtType === 'in') ? 111 : 119;
+            break;
+            case 'GS-13':
+              hourlyRate = (govtType === 'in') ? 93 : 100;
+            break;
+            case 'GS-12':
+              hourlyRate = (govtType === 'in') ? 78 : 84;
+            break;
+            case 'GS-11':
+              hourlyRate = (govtType === 'in') ? 69 : 74;
+            break;
+            case 'GS-10':
+              hourlyRate = (govtType === 'in') ? 60 : 65;
+            break;
+            case 'GS-09':
+              hourlyRate = (govtType === 'in') ? 58 : 63;
+            break;
+            case 'GS-08':
+              hourlyRate = (govtType === 'in') ? 55 : 59;
+            break;
+            case 'GS-07':
+              hourlyRate = (govtType === 'in') ? 49 : 52;
+            break;
+            case 'GS-06':
+              hourlyRate = (govtType === 'in') ? 45 : 48;
+            break;
+            case 'GS-05':
+              hourlyRate = (govtType === 'in') ? 41 : 44;
+            break;
+            case 'GS-04':
+              hourlyRate = (govtType === 'in') ? 39 : 42;
+            break;
+            case 'GS-03':
+              hourlyRate = (govtType === 'in') ? 32 : 35;
+            break;
+            case 'WG-15':
+              hourlyRate = (govtType === 'in') ? 66 : 71;
+            break;
+            case 'WG-14':
+              hourlyRate = (govtType === 'in') ? 64 : 68;
+            break;
+            case 'WG-13':
+              hourlyRate = (govtType === 'in') ? 62 : 66;
+            break;
+            case 'WG-12':
+              hourlyRate = (govtType === 'in') ? 59 : 64;
+            break;
+            case 'WG-11':
+              hourlyRate = (govtType === 'in') ? 57 : 61;
+            break;
+            case 'WG-10':
+              hourlyRate = (govtType === 'in') ? 55 : 59;
+            break;
+            case 'WG-09':
+              hourlyRate = (govtType === 'in') ? 52 : 56;
+            break;
+            case 'WG-08':
+              hourlyRate = (govtType === 'in') ? 50 : 54;
+                break;
+            case 'WG-07':
+            hourlyRate = (govtType === 'in') ? 48 : 51;
+              break;
+            case 'WG-06':
+            hourlyRate = (govtType === 'in') ? 45 : 48;
+              break;
+            case 'WG-05':
+            hourlyRate = (govtType === 'in') ? 42 : 45;
+              break;
+            case 'WG-04':
+            hourlyRate = (govtType === 'in') ? 40 : 43;
+              break;
+            case 'WG-03':
+            hourlyRate = (govtType === 'in') ? 37 : 40;
+              break;
+            case 'WG-02':
+            hourlyRate = (govtType === 'in') ? 34 : 37;
+              break;
+            default:
+                hourlyRate = 0;
+        }
+
+        if (hourlyRate && hoursWorked && personnel) {
+        const totalCost = hourlyRate * hoursWorked * personnel;
+        document.getElementById('gradeResult').textContent = `Total Estimated Personnel Cost by Grade: $${totalCost}`;
+    } else {
+        document.getElementById('gradeResult').textContent = 'Please fill in all fields.';
+    }
+}
+  function resetGradeCalculator() {
+    document.getElementById('gradeCalcForm').reset();
+  }
+</script>
+
+</body>
+</html>

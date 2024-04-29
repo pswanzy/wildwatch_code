@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Personnel Rates By Rank Calculator</title>
+</head>
+<body>
+
+<h3>Personnel Rates By Rank Calculator</h3>
+<h4>Answer the following questions for estimation of Personnel costs by Rank:</h4>
+<form id="rankCalcForm">
+  <div>  
+  <label for="rankSelect">Select Rank:</label>
+    <select id="rankSelect">
+        <option value="" disabled selected>Select Rank</option>
+        <option value="O-10">O-10</option>
+        <option value="O-9">O-9</option>
+        <option value="O-8">O-8</option>
+        <option value="O-7">O-7</option>
+        <option value="O-6">O-6</option>
+        <option value="O-5">O-5</option>
+        <option value="O-4">O-4</option>
+        <option value="O-3">O-3</option>
+        <option value="O-2">O-2</option> 
+        <option value="O-1">O-1</option>
+        <option value="CADET">CADET</option>
+        <option value="W-4">W-4</option>
+        <option value="W-3">W-3</option>
+        <option value="W-2">W-2</option>
+        <option value="E-10">E-10</option>
+        <option value="E-9">E-9</option>
+        <option value="E-8">E-8</option>
+        <option value="E-7">E-7</option>
+        <option value="E-6">E-6</option>
+        <option value="E-5">E-5</option>
+        <option value="E-4">E-4</option>
+        <option value="E-3">E-3</option>
+        <option value="E-2">E-2</option>
+        <option value="E-1">E-1</option>
+    </select>
+  </div>
+  <div>
+    <label for="rankGovtType">Select Gov't Type:</label>
+    <select id="rankGovtType">
+        <option value="" disabled selected>Select Type</option>
+        <option value="in">In Gov't</option>
+        <option value="out">Out Gov't</option>
+    </select>
+  </div>
+  <div>
+    <label for="rankHoursWorked">Hours Worked:</label>
+    <input type="number" id="rankHoursWorked" min="0">
+  </div>
+  <div>
+    <label for="rankPersonnel">Number of Personnel:</label>
+    <input type="number" id="rankPersonnel" min="0">
+  </div>
+  <div>
+    <button type="button" onclick="calculateRankCost()">Calculate Cost</button>
+  </div>
+  <div><button type="button" onclick="resetRankCalculator()">Reset Fields</button></div>
+    <p id="rankResult"></p>
+</form>
+  </body>
+  
+<footer>
+<script>
+    function calculateRankCost() {
+        const rank = document.getElementById('rankSelect').value;
+        const govtType = document.getElementById('rankGovtType').value;
+        const hoursWorked = parseFloat(document.getElementById('rankHoursWorked').value);
+        const personnel = parseInt(document.getElementById('rankPersonnel').value);
+        let hourlyRate;
+
+  switch (rank) {
+            case 'O-10':
+                hourlyRate = (govtType === 'in') ? 165 : 244;
+                break;
+            case 'O-9':
+                hourlyRate = (govtType === 'in') ? 160 : 237;
+                break;
+            case 'O-8':
+            hourlyRate = (govtType === 'in') ? 148 : 218;
+            break;
+            case 'O-7':
+            hourlyRate = (govtType === 'in') ? 145 : 214;
+            break;
+            case 'O-6':
+            hourlyRate = (govtType === 'in') ? 130 : 190;
+            break;
+            case 'O-5':
+            hourlyRate = (govtType === 'in') ? 115 : 169;
+            break;
+            case 'O-4':
+            hourlyRate = (govtType === 'in') ? 103 : 150;
+            break;
+            case 'O-3':
+            hourlyRate = (govtType === 'in') ? 87 : 127;
+            break;
+            case 'O-2':
+            hourlyRate = (govtType === 'in') ? 73 : 106;
+            break;
+            case 'O-1':
+            hourlyRate = (govtType === 'in') ? 57 : 82;
+            break;
+            case 'CADET':
+            hourlyRate = (govtType === 'in') ? 24 : 33;
+            break;
+            case 'W-4':
+            hourlyRate = (govtType === 'in') ? 91 : 134;
+            break;
+            case 'W-3':
+            hourlyRate = (govtType === 'in') ? 84 : 123;
+            break;
+            case 'W-2':
+            hourlyRate = (govtType === 'in') ? 79 : 116;
+            break;
+            case 'E-10':
+            hourlyRate = (govtType === 'in') ? 109 : 161;
+            break;
+            case 'E-9':
+            hourlyRate = (govtType === 'in') ? 88 : 129;
+            break;
+            case 'E-8':
+            hourlyRate = (govtType === 'in') ? 78 : 113;
+            break;
+            case 'E-7':
+            hourlyRate = (govtType === 'in') ? 71 : 103;
+            break;
+            case 'E-6':
+            hourlyRate = (govtType === 'in') ? 63 : 92;
+            break;
+            case 'E-5':
+            hourlyRate = (govtType === 'in') ? 55 : 80;
+            break;
+            case 'E-4':
+            hourlyRate = (govtType === 'in') ? 46 : 66;
+            break;
+            case 'E-3':
+            hourlyRate = (govtType === 'in') ? 37 : 53;
+            break;
+            case 'E-2':
+            hourlyRate = (govtType === 'in') ? 34 : 49;
+            break;
+            case 'E-1':
+                hourlyRate = (govtType === 'in') ? 25 : 35;
+                break;
+            default:
+                hourlyRate = 0;
+        }
+
+        if (hourlyRate && hoursWorked && personnel) {
+            const totalCost = hourlyRate * hoursWorked * personnel;
+            document.getElementById('rankResult').textContent = `Total Estimated Personnel Cost by Rank: $${totalCost}`;
+        } else {
+            document.getElementById('rankResult').textContent = 'Please fill in all fields.';
+        }
+    }
+  function resetRankCalculator() {
+    document.getElementById('rankCalcForm').reset();
+}
+</script>
+  </footer>
+</html>

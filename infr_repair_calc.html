@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Disaster Infrastructure Repair Costs Calculator</title>
+</head>
+<body>
+  <div> <h3>Infrastructure Repair Calculator</h3></div>
+  <div>
+    <h4>Estimate costs of post-disaster infrastructure repair:</h4>
+    <form id="repairCostForm2">
+        <div>
+            <label for="infraQuestion1">Question 1: Please place the amount of insured value of the properties damaged in the disaster.</label> <br>
+            <input type="number" step="1" name="question1" id="infraQuestion1" min="0" required>
+        </div>
+        <div>
+            <label for="infraQuestion2">Question 2: How much linear blocks of overhead utility was damaged? (10 houses long, both sides)</label> <br>
+            <input type="number" step="1" name="question2" id="infraQuestion2" min="0" required>
+        </div>
+        <div>
+            <label for="infraQuestion3">Question 3: How many linear foot of road was damaged? (for a 20' wide roadway)?</label> <br>
+            <input type="number" step="1" name="question3" id="infraQuestion3" min="0" required>
+        </div>
+        <div>
+            <label for="infraQuestion4">Question 4: How much culverts were potentially damaged or washed out by the disaster?</label><br>
+            <input type="number" step="1" name="question4" id="infraQuestion4" min="0" required>
+        </div>
+
+      <br>
+      <div><button type="button" onclick="calculateInfrastructureRepairTotal()">Calculate Total</button>
+      </div><div><button type="button" onclick="resetCostForm2()">Reset Fields</button>
+      </div>
+    </form>
+    <div id="infraTotal"></div>
+  </div>
+</body>
+<footer>
+  <script>
+    function calculateInfrastructureRepairTotal() {
+        var question1 = parseInt(document.getElementById('infraQuestion1').value) || 0;
+        var question2 = parseInt(document.getElementById('infraQuestion2').value) || 0;
+        var question3 = parseInt(document.getElementById('infraQuestion3').value) || 0;
+        var question4 = parseInt(document.getElementById('infraQuestion4').value) || 0;
+
+        // Calculation logic
+        var totalCost = (question1 * 0.1) + question1 + (question2 * 10000) + (question3 * 300) + (question4 * 45000);
+
+        document.getElementById('infraTotal').innerText = 'Total Repair Cost: $' + totalCost.toFixed(2);
+    }
+    function resetCostForm2() {
+    document.getElementById('repairCostForm2').reset();
+    }
+  </script>
+</footer>
+</html>
